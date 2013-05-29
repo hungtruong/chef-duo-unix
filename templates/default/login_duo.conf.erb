@@ -1,0 +1,9 @@
+[duo]
+ikey= <%=node['duo_unix']['conf']['integration_key']%>
+skey= <%=node['duo_unix']['conf']['secret_key']%>
+host= <%=node['duo_unix']['conf']['api_hostname']%>
+pushinfo= <%=node['duo_unix']['conf']['pushinfo']%>
+<% if node['duo_unix']['conf']['group'] != '' %>
+group= <%=node['duo_unix']['conf']['group']%>
+<% end %>
+failmode= <%=node['duo_unix']['conf']['failmode']%>
