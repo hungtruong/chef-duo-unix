@@ -17,8 +17,6 @@
 # limitations under the License.
 #
 
-#include recipe 'build-essential'
-#build dependencies
 case node[:platform]
 when "debian", "ubuntu"
 	package "libssl-dev" do
@@ -70,6 +68,7 @@ else
 	end
 end
 
+#hacky way of editing the sshd_config file to add or remove lines
 if node['duo_unix']['conf']['PermitTunnel'] 
 	bash "remove permit tunnel no" do
 		code <<-WTAF
@@ -98,6 +97,7 @@ else
 	end
 end
 
+#restart the sshd process so the next login will be duo protected
 bash "restart sshd process" do
 	code "kill -HUP `cat /var/run/sshd.pid`"
 end
